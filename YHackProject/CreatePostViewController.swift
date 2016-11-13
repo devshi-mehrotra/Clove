@@ -51,14 +51,14 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
                                         style: UIAlertActionStyle.default,
                                         handler: {(paramAction:UIAlertAction!) in
                                             if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
-                                                self.picker.allowsEditing = false
+                                                self.picker.allowsEditing = true
                                                 self.picker.sourceType = UIImagePickerControllerSourceType.camera
                                                 self.picker.cameraCaptureMode = .photo
+                                                self.picker.modalPresentationStyle = .fullScreen
                                                 self.present(self.picker, animated: true, completion: nil)
                                             } else {
                                                 self.noCamera()
-                                            }
-        })
+                                            }        })
         
         let actionImessage = UIAlertAction(title: "Choose from Library",
                                            style: UIAlertActionStyle.default,
@@ -84,7 +84,6 @@ class CreatePostViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        takePicButton.setImage(nil, for: UIControlState.normal)
         chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         photoView.contentMode = .scaleAspectFit
         photoView.image = chosenImage

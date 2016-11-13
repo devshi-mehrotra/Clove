@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         photoView.file = user?["profPic"] as! PFFile?
         photoView.loadInBackground()
         let num = user?["numPosts"] as! Int
-        numPosts.text = "Number of posts: " + String(num)
+        numPosts.text = String(num)
         collectionView.dataSource = self
         self.collectionView.alwaysBounceVertical = true
         
