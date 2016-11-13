@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Parse
+import GooglePlaces
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+       GMSPlacesClient.provideAPIKey("AIzaSyAFBKwqAgxEnOe_RUuI2AWQBq2cB1zpqTY")
+        
+        
+        
+        Parse.initialize(
+            with: ParseClientConfiguration(block: { (configuration:ParseMutableClientConfiguration) -> Void in
+                configuration.applicationId = "yhackproj"
+                configuration.clientKey = "clove"  // set to nil assuming you have not set clientKey
+                configuration.server = "http://yhackproj.herokuapp.com/parse"
+            })
+        )
+        
+        if PFUser.current() != nil {
+            // if there is a logged in user then load the home view controller
+        }
+
+        self.window?.tintColor = UIColor(red: 1, green: 0.27, blue: 0.3, alpha: 1.0)
+        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 1, green: 0.27, blue: 0.3, alpha: 1.0)
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        UIToolbar.appearance().barTintColor = UIColor(red: 1, green: 0.27, blue: 0.3, alpha: 1.0)
+        
+        UITabBar.appearance().barTintColor = UIColor(red: 1, green: 0.27, blue: 0.3, alpha: 1.0)
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+         GMSPlacesClient.provideAPIKey("AIzaSyAFBKwqAgxEnOe_RUuI2AWQBq2cB1zpqTY")
         return true
     }
 
